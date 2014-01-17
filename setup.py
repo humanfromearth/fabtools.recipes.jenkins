@@ -5,18 +5,11 @@ version = '0.1'
 
 long_description = (
     open('README.rst').read()
-    + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.txt').read()
-    + '\n' +
-    open('CHANGES.txt').read()
-    + '\n')
+)
 
-setup(name='fabtools.recipes.graphite',
+setup(name='fabtools.recipes.jenkins',
       version=version,
-      description="Fabric task to install graphite",
+      description="Fabric task to install jenkins",
       long_description=long_description,
       classifiers=[
         "Development Status :: 4 - Beta",
@@ -31,9 +24,9 @@ setup(name='fabtools.recipes.graphite',
         "Topic :: System :: Systems Administration",
         ],
       keywords='',
-      author='Ronan Amicel',
-      author_email='ronan.amicel@gmail.com',
-      url='http://github.com/ronnix/fabtools.recipes.graphite',
+      author='Alexandru Plugaru',
+      author_email='alexandru.plugaru@gmail.com',
+      url='http://github.com/humanfromearth/fabtools.recipes.jenkins',
       license='BSD',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
