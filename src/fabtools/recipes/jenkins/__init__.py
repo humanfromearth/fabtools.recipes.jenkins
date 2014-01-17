@@ -10,30 +10,23 @@ import fabtools
 from fabtools.files import is_file
 from fabtools import require
 
-JENKINS_CONF = '/etc/sysconfig/jenkins'
-#JENKINS_CONF = '/etc/sysconfig/jenkins'
+JENKINS_CONF = '/etc/default/jenkins'
+#JENKINS_CONF = '/etc/sysconfig/jenkins' # redhat
+
 
 @task
-def install_jenkins(jenkins_home, local_port=6000,
+def install_jenkins(local_port=8080,
         server_name='jenkins', port=80):
     """
     Install jenkins
     """
 
-    require.directory(jenkins_home, owner=env.user, use_sudo=True)
+    jenkins_home = '/var/lib/jenkins'
 
     # Require a recent jenkins
-    require.deb.key('jenkins-ci.org.key', url='http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key')
+    require.deb.key('9B7D32F2D50582E6', url='http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key')
     require.deb.source('jenkins', 'http://pkg.jenkins-ci.org/debian', 'binary/')
-    sudo("apt-get -qq update")
     require.deb.package('jenkins')
-
-    return
-    # Carbon config file
-    with cd('conf'):
-        if not is_file('carbon.conf'):
-            run('cp carbon.conf.example carbon.conf')
-        require.file('storage-schemas.conf', contents=STORAGE_SCHEMA)
 
     # Configure web server
     require.nginx.server()

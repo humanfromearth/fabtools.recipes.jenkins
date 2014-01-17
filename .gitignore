@@ -4,3 +4,4 @@ bin/
 lib/
 .Python
 include/
+.vagrant
